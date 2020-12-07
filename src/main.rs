@@ -54,18 +54,17 @@ fn main() {
                     let num = cap[4].parse::<i64>().unwrap();
                     if num >= 59 && num <= 76 {
                         passport_map.insert(String::from(&cap[1]), String::from(&cap[3]));
-                    }else {
+                    } else {
                         continue;
                     }
-                }else if cap.get(8) != None && &cap[8] == "cm" {
+                } else if cap.get(8) != None && &cap[8] == "cm" {
                     let num = cap[7].parse::<i64>().unwrap();
                     if num >= 150 && num <= 193 {
                         passport_map.insert(String::from(&cap[1]), String::from(&cap[6]));
-                    }else {
+                    } else {
                         continue;
                     }
                 }
-            
             } else if HCL_RE.is_match(feild) {
                 let cap = HCL_RE.captures(feild).unwrap();
                 passport_map.insert(String::from(&cap[1]), String::from(&cap[2]));
@@ -77,18 +76,17 @@ fn main() {
                 passport_map.insert(String::from(&cap[1]), String::from(&cap[2]));
             }
         }
-        
+
         println!("{:?}", passport_map);
-        if passport_map.contains_key("byr") {
-            if passport_map.contains_key("iyr")
-                && passport_map.contains_key("eyr")
-                && passport_map.contains_key("hgt")
-                && passport_map.contains_key("hcl")
-                && passport_map.contains_key("ecl")
-                && passport_map.contains_key("pid")
-            {
-                valid_num += 1;
-            }
+        if passport_map.contains_key("byr")
+            && passport_map.contains_key("iyr")
+            && passport_map.contains_key("eyr")
+            && passport_map.contains_key("hgt")
+            && passport_map.contains_key("hcl")
+            && passport_map.contains_key("ecl")
+            && passport_map.contains_key("pid")
+        {
+            valid_num += 1;
         }
     }
 
